@@ -7,8 +7,9 @@ from ykdl.util.match import match1, matchall
 import re
 
 def get_extractor(url):
-    if 'SESSDATA' in os.environ:
-        add_header('Cookie', 'SESSDATA={}'.format(os.environ["SESSDATA"]))
+    from os import environ
+    if 'SESSDATA' in environ:
+        add_header('Cookie', 'SESSDATA={}'.format(environ["SESSDATA"]))
     if 'live.bilibili' in url:
         from . import live as s
         return s.site, url
